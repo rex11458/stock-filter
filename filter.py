@@ -47,6 +47,8 @@ def filterStocks():
         if index % 500 == 0:
            saveValidStocks()
            clearFavouriteStocks()
+    
+    clearFavouriteStocks()
     print '----------------筛选结束，添加至股票列表-----------------------'
     addValidFavouriteStocks()
 
