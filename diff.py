@@ -14,3 +14,6 @@ def diff(file1, file2):
     except Exception as e:
         print e
     print list(set(listB).difference(set(listA)))
+
+
+diff('2019073116.json', '2019-07-31.json')
