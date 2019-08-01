@@ -3,6 +3,7 @@
 import requests
 from fetch_stocks import getAllStocks
 from save_valid_stocks import saveValidStocks, getValidStocks
+import time
 
 cookies = {
     "sid":
@@ -34,8 +35,8 @@ def delFavouriteStock(code, market):
     url = "https://myfavor.eastmoney.com/mystock_wap?f=dsz&sc=%s|%s|01" % (
         code, market)
 
-    response = requests.get(url, cookies=cookies)
-    print code, '|', response.json().get("data").get("msg")
+    requests.get(url, cookies=cookies)
+    # print code, '|', response.json().get("data").get("msg")
 
 
 def filterStocks():
@@ -51,7 +52,9 @@ def filterStocks():
         market = "0" + stock[0]
         addFavouriteStock(code, market)
         index += 1
-        if index % 500 == 0:
+        if index % 500 == 0 or index == len(stocks):
+            time.sleep(5)
+            print 'sleep...'
             saveValidStocks()
             clearFavouriteStocks()
 
@@ -72,6 +75,7 @@ def getFavouriteStocks():
 
 def clearFavouriteStocks():
     print '---------------清除自选列表---------------'
+    print '...'
     stocks = getFavouriteStocks()
     for stock in stocks:
         code = stock.get('code')

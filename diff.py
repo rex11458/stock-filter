@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 import json
+import sys
 
 
 def diff(file1, file2):
@@ -16,4 +17,8 @@ def diff(file1, file2):
     print list(set(listB).difference(set(listA)))
 
 
-diff('2019073116.json', '2019-07-31.json')
+args = sys.argv
+
+diff(args[1], args[2])
+
+diff('2019080109.json', '2019080115.json')
