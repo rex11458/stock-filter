@@ -6,11 +6,14 @@ from datetime import datetime
 
 
 def getFileName():
-    return datetime.now().strftime("%Y%m%d%H") + '.json'
+    return datetime.now().strftime("%Y%m%d") + '.json'
 
 
 def saveValidStocks():
-    url = "http://i.eastmoney.com/api/getsamestock?f=gcomstks&top=500&u=6638013318825774&_=1571035178980"
+
+    # 沧海 8851013789892654
+    # 丰收 6638013318825774
+    url = "http://i.eastmoney.com/api/getsamestock?f=gcomstks&top=500&u=8851013789892654&_=1571035178980"
     cookies = {
         "sid":
         "124254159",
