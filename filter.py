@@ -2,7 +2,7 @@
 
 from quote import fetchAllStocks
 from favourite import addStockList, clearStocks, getStockList
-from save_valid_stocks import saveValidStocks, getValidStocks
+from find_stock import saveValidStocks, getValidStocks
 
 globalStocks = fetchAllStocks()
 
