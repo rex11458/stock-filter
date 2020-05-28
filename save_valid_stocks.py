@@ -4,16 +4,18 @@ import json
 
 from datetime import datetime
 
+def getFileName(userId):
 
-def getFileName():
-    return datetime.now().strftime("%Y%m%d") + '.json'
+    return datetime.now().strftime("%Y%m%d") + '%s%s%s' % ('_', userId,
+                                                           '.json')
 
 
-def saveValidStocks():
+def saveValidStocks(userId):
+
     # 邬佳喜 8686013861817596
     # 沧海 8851013789892654
     # 丰收 6638013318825774
-    url = "http://i.eastmoney.com/api/getsamestock?f=gcomstks&top=500&u=8686013861817596&_=1571035178980"
+    url = "http://i.eastmoney.com/api/getsamestock?f=gcomstks&top=500&u=%s&_=1571035178980" % userId
     cookies = {
         "sid":
         "124254159",
@@ -29,22 +31,17 @@ def saveValidStocks():
         "1"
     }
     response = requests.get(url, cookies=cookies)
-    content = response.json()
-    stocks = []
     try:
-        result = content["result"].split(',')
-        for value in result:
-            stocks.append(value[2:])
-            pass
         print '--------------匹配到的股票----------------'
+        stocks = response.json()["result"].split(',')
         print stocks
-        dumpStocks(stocks)
+        dumpStocks(stocks, userId)
     except Exception as e:
         print e
 
 
-def getValidStocks():
-    fileName = getFileName()
+def getValidStocks(userId):
+    fileName = getFileName(userId)
     try:
         with open(fileName, 'r') as f:
             return json.loads(f.read())
@@ -52,9 +49,9 @@ def getValidStocks():
         return []
 
 
-def dumpStocks(stocks):
-    fileName = getFileName()
-    old = getValidStocks()
+def dumpStocks(stocks, userId):
+    fileName = getFileName(userId)
+    old = getValidStocks(userId)
     with open(fileName, 'w') as f:
         try:
             new = list(set(old + stocks))

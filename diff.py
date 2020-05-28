@@ -14,10 +14,10 @@ def diff(file1, file2):
         with open(file2, 'r') as f:
             listB = json.loads(f.read())
     except Exception as e:
-        print e
+        # print e
     result = list(set(listB).difference(set(listA)))
 
-    print result
+    # print result
 
     for value in result:
         market = "01"
@@ -54,7 +54,7 @@ def diff(file1, file2):
     #             'code': ('0', value),
     #             'topgroupid': '74964566'
     #         })
-    #     print response.text
+    #     # print response.text
 
     #     response = sess.post(
     #         url,
@@ -62,7 +62,7 @@ def diff(file1, file2):
     #             'code': ('1', value),
     #             'topgroupid': '74964566'
     #         })
-    #     print response.text
+    #     # print response.text
 
 
 args = sys.argv
