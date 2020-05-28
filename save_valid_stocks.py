@@ -10,10 +10,10 @@ def getFileName():
 
 
 def saveValidStocks():
-
+    # 邬佳喜 8686013861817596
     # 沧海 8851013789892654
     # 丰收 6638013318825774
-    url = "http://i.eastmoney.com/api/getsamestock?f=gcomstks&top=500&u=8851013789892654&_=1571035178980"
+    url = "http://i.eastmoney.com/api/getsamestock?f=gcomstks&top=500&u=8686013861817596&_=1571035178980"
     cookies = {
         "sid":
         "124254159",
