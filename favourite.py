@@ -49,8 +49,8 @@ def addStockList(stocks, groupId="31949823"):
         'fromgroupid': '366334204'
     }
     response = requests.post(url, json=payload, headers=headers)
-    # msg = response.text
-    # print msg
+    msg = response.text
+    print msg
 
 
 # 批量删除自选股
@@ -72,6 +72,19 @@ def setTop(stock, groupId="74964566"):
     response = requests.post(url, json=payload, headers=headers)
     # print response.text
     return response.json()
+
+
+# 批量置顶
+def setTopList(stocks, groupId="74964566"):
+    url = baseUrl + '%s' % ('/movegroup')
+    payload = {
+        'code': stocks,
+        'togroupid': groupId,
+        'fromgroupid': '366334204'
+    }
+    response = requests.post(url, json=payload, headers=headers)
+    msg = response.text
+    print msg
 
 
 # 清空自选股

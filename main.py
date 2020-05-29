@@ -7,6 +7,7 @@
 # 丰收 6638013318825774
 
 from filter import filterStocks
+from favourite import addStockList, clearStocks, getStockList
 
 if __name__ == '__main__':
     groups = [
@@ -24,6 +25,13 @@ if __name__ == '__main__':
         },
     ]
 
+    # 保存自己的自选股
+    selfStocks = getStockList()
+    selfStocks.reverse()
     for group in groups:
-        print '当前关注的人：%s' % group["userId"] 
+        print '当前关注的人：%s' % group["userId"]
         filterStocks(group["groupId"], group["userId"])
+
+    # 自己的自选股还原
+    clearStocks()
+    addStockList(','.join(selfStocks))
