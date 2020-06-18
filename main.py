@@ -8,7 +8,7 @@
 
 from filter import filterStocks
 from favourite import addStockList, clearStocks, getStockList
-
+from diff import diff
 if __name__ == '__main__':
     groups = [
         {
@@ -23,6 +23,10 @@ if __name__ == '__main__':
             'userId': '6638013318825774',  # 丰收
             'groupId': '260750355'
         },
+        {
+            'userId': '5832094130221652',  # 波段
+            'groupId': '406344906'
+        }
     ]
 
     # 保存自己的自选股
@@ -35,3 +39,7 @@ if __name__ == '__main__':
     # 自己的自选股还原
     clearStocks()
     addStockList(','.join(selfStocks))
+
+    diff('20200610_6638013318825774.json', '20200617_6638013318825774.json', '260750355')
+    diff('20200610_8851013789892654.json', '20200617_8851013789892654.json','331863675')
+    diff('20200610_8686013861817596.json', '20200617_8686013861817596.json', '398410053')
