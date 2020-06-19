@@ -26,3 +26,4 @@ def filterStocks(groupId, userId):
     validStocks = getValidStocks(userId)
     addStockList(','.join(validStocks), groupId)
     print '添加有效自选股成功...'
+    return validStocks

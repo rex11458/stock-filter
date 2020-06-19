@@ -4,7 +4,7 @@ import json
 from favourite import addStockList
 
 
-def diff(file1, file2,groupId):
+def diff(file1, file2, groupId="31949823"):
     listA = []
     listB = []
     try:
@@ -15,6 +15,7 @@ def diff(file1, file2,groupId):
     except Exception as e:
         print e
     result = list(set(listB).difference(set(listA)))
+    print '-------------------' + groupId + '--------------------------------'
     print result
     addStockList(','.join(result), groupId)
 
@@ -41,3 +42,6 @@ def intersectionFile(file1, file2, file3):
 # diff('20200610_6638013318825774.json', '20200617_6638013318825774.json', '260750355')
 # diff('20200610_8851013789892654.json', '20200617_8851013789892654.json','331863675')
 # diff('20200610_8686013861817596.json', '20200617_8686013861817596.json', '398410053')
+
+# diff('20200617_6638013318825774.json', '20200618_6638013318825774.json')
+diff('20200618_6638013318825774.json', '20200619_6638013318825774.json')

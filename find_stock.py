@@ -32,9 +32,9 @@ def saveValidStocks(userId):
     }
     response = requests.get(url, cookies=cookies)
     try:
-        print '--------------匹配到的股票----------------'
+        # print '--------------匹配到的股票----------------'
         stocks = response.json()["result"].split(',')
-        print stocks
+        # print stocks
         dumpStocks(stocks, userId)
     except Exception as e:
         print e
