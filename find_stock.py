@@ -1,13 +1,18 @@
 # -*- coding: UTF-8 -*-
 import requests
 import json
+import os
 
 from datetime import datetime
 
+JSON_DIR = 'json/'
+
+
 def getFileName(userId):
 
-    return datetime.now().strftime("%Y%m%d") + '%s%s%s' % ('_', userId,
-                                                           '.json')
+    t = datetime.now().strftime("%Y%m%d%H") + '%s%s%s' % ('_', userId, '.json')
+
+    return JSON_DIR + '%s' % t
 
 
 def saveValidStocks(userId):
@@ -58,3 +63,15 @@ def dumpStocks(stocks, userId):
             json.dump(new, f)
         except Exception as e:
             print e
+
+
+def getLatestValidJson(userId):
+
+    files = os.listdir(JSON_DIR)
+    files.sort()
+
+    f_list = []
+    for file in files:
+        file = JSON_DIR + '%s' % file
+        f_list.append(file)
+    return f_list
