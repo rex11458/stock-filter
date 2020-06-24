@@ -1,19 +1,26 @@
 # -*- coding: UTF-8 -*-
 import requests
 import json
+import os
 
 from datetime import datetime
 
-
-def getFileName():
-    return datetime.now().strftime("%Y%m%d") + '.json'
+JSON_DIR = 'json/'
 
 
-def saveValidStocks():
+def getFileName(userId):
+
+    t = datetime.now().strftime("%Y%m%d%H") + '%s%s%s' % ('_', userId, '.json')
+
+    return JSON_DIR + '%s' % t
+
+
+def saveValidStocks(userId):
+
     # 邬佳喜 8686013861817596
     # 沧海 8851013789892654
     # 丰收 6638013318825774
-    url = "http://i.eastmoney.com/api/getsamestock?f=gcomstks&top=500&u=8686013861817596&_=1571035178980"
+    url = "http://i.eastmoney.com/api/getsamestock?f=gcomstks&top=500&u=%s&_=1571035178980" % userId
     cookies = {
         "sid":
         "124254159",
@@ -29,22 +36,17 @@ def saveValidStocks():
         "1"
     }
     response = requests.get(url, cookies=cookies)
-    content = response.json()
-    stocks = []
     try:
-        result = content["result"].split(',')
-        for value in result:
-            stocks.append(value[2:])
-            pass
-        print '--------------匹配到的股票----------------'
-        print stocks
-        dumpStocks(stocks)
+        # print '--------------匹配到的股票----------------'
+        stocks = response.json()["result"].split(',')
+        # print stocks
+        dumpStocks(stocks, userId)
     except Exception as e:
         print e
 
 
-def getValidStocks():
-    fileName = getFileName()
+def getValidStocks(userId):
+    fileName = getFileName(userId)
     try:
         with open(fileName, 'r') as f:
             return json.loads(f.read())
@@ -52,12 +54,24 @@ def getValidStocks():
         return []
 
 
-def dumpStocks(stocks):
-    fileName = getFileName()
-    old = getValidStocks()
+def dumpStocks(stocks, userId):
+    fileName = getFileName(userId)
+    old = getValidStocks(userId)
     with open(fileName, 'w') as f:
         try:
             new = list(set(old + stocks))
             json.dump(new, f)
         except Exception as e:
             print e
+
+
+def getLatestValidJson(userId):
+
+    files = os.listdir(JSON_DIR)
+    files.sort()
+
+    f_list = []
+    for file in files:
+        file = JSON_DIR + '%s' % file
+        f_list.append(file)
+    return f_list
