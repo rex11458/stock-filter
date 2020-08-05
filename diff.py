@@ -17,7 +17,7 @@ def diff(file1, file2, groupId="407210032"):
     result = list(set(listB).difference(set(listA)))
     print '-------------------' + groupId + '--------------------------------'
     print result
-    # addStockList(','.join(result), groupId)
+    addStockList(','.join(result), groupId)
     return result
 
 
