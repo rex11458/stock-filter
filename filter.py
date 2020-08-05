@@ -7,7 +7,7 @@ from find_stock import saveValidStocks, getValidStocks
 globalStocks = fetchAllStocks()
 
 
-def filterStocks(groupId, userId):
+def filterStocks(userId, groupId="31949823"):
     length = len(globalStocks)
 
     for group in globalStocks:
