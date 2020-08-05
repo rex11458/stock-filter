@@ -16,14 +16,14 @@ if __name__ == '__main__':
         #     'userId': '8686013861817596',  # 邬佳喜
         #     'groupId': '398410053'
         # },
-        # {
-        #     'userId': '8851013789892654',  # 沧海
-        #     'groupId': '331863675'
-        # },
         {
-            'userId': '6638013318825774',  # 丰收
-            'groupId': '260750355'
-        }
+            'userId': '8851013789892654',  # 沧海
+            'groupId': '331863675'
+        },
+        # {
+        #     'userId': '6638013318825774',  # 丰收
+        #     'groupId': '260750355'
+        # }
         # ,
         # {
         #     'userId': '5832094130221652',  # 波段
@@ -42,6 +42,6 @@ if __name__ == '__main__':
     clearStocks()
     addStockList(','.join(selfStocks))
 
-    list = getLatestValidJson('6638013318825774')
+    list = getLatestValidJson('8851013789892654')
     print list
     diff(list[-2], list[-1])
